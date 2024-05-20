@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  courier-tracking:
+    image: 'courier-tracking-service:1.0'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://courier-postgis:5432/courier-tracking
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - courier-postgis
+
+  courier-postgis:
+    image: postgis/postgis
+    environment:
+      POSTGRES_DB: courier-tracking
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
