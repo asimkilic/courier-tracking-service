@@ -1,6 +1,6 @@
 # wait-for-it:  https://github.com/vishnubob/wait-for-it
 
-##### For container build - LOWER #####
+##### For container build - SLOWER #####
 
 FROM jelastic/maven:3.9.5-openjdk-21 AS build
 COPY pom.xml /build/
